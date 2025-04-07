@@ -59,3 +59,10 @@ Speech commands classification with Transformers
 
 --------
 
+References :
+
+Speech representation and data exploration : https://www.kaggle.com/code/davids1992/speech-representation-and-data-exploration
+
+"Attention is all you need" : paper from Google published in 2017 : https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
+
+Implementation of the Google's paper : https://nlp.seas.harvard.edu/2018/04/03/attention.html and Notebook on Google Colab : https://colab.research.google.com/drive/1xQXSv6mtAOLXxEMi8RvaW8TW-7bvYBDF#scrollTo=tSWEk4ttUgQH
