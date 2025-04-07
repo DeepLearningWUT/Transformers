@@ -61,7 +61,11 @@ Speech commands classification with Transformers
 
 References :
 
+Kaggle's datasets : TensorFlow Speech Recognition Challenge : https://www.kaggle.com/c/tensorflow-speech-recognition-challenge/data
+
 Speech representation and data exploration : https://www.kaggle.com/code/davids1992/speech-representation-and-data-exploration
+
+
 
 "Attention is all you need" : paper from Google published in 2017 : https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
 
