@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745592925256
+current_stage: None
+description: null
+last_updated_timestamp: 1745592925256
+name: YesNoClassifier
+run_id: 9363e6a181af4d4c8dd880345dfe1b81
+run_link: null
+source: file:///c:/Users/cypri/Transformers/mlruns/164268678298472589/9363e6a181af4d4c8dd880345dfe1b81/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///c:/Users/cypri/Transformers/mlruns/164268678298472589/9363e6a181af4d4c8dd880345dfe1b81/artifacts/model
+user_id: null
+version: 1
