@@ -82,9 +82,7 @@ def log_checkpoint_model(model, epoch, threshold_metrics=None):
         # ✅ Save it under checkpoints/, not model/
         mlflow.log_artifact(local_path, artifact_path="checkpoints")
 
-    # Optional: only log the full model once elsewhere (e.g. best model)
-    # mlflow.pytorch.log_model(model, artifact_path="model")
-
+    
     return os.path.join("checkpoints", f"model_epoch_{epoch}.pth")
 
 
@@ -138,27 +136,31 @@ def log_learning_curves(train_metrics, val_metrics):
 
     metrics = list(train_metrics.keys())
     epochs = range(1, len(train_metrics[metrics[0]]) + 1)
+    num_metrics = len(metrics)
 
-    n_metrics = len(metrics)
-    fig, axes = plt.subplots(1, n_metrics, figsize=(n_metrics * 5, 5))
-    if n_metrics == 1:
-        axes = [axes]
+    
+    fig, axes = plt.subplots(1, num_metrics, figsize=(num_metrics * 5, 4))
+    if num_metrics == 1:
+        axes = [axes]  
 
     for i, metric in enumerate(metrics):
         ax = axes[i]
-        ax.plot(epochs, train_metrics[metric], "b-", label=f"Training {metric}")
-        ax.plot(epochs, val_metrics[metric], "r-", label=f"Validation {metric}")
-        ax.set_title(f"{metric.capitalize()} Curves")
-        ax.set_xlabel("Epochs")
-        ax.set_ylabel(metric)
+        ax.plot(
+            epochs, train_metrics[metric], label="Train", color="blue", linestyle="-"
+        )
+        ax.plot(epochs, val_metrics[metric], label="Test", color="red", linestyle="--")
+        ax.set_title(f"{metric.capitalize()} over Epochs")
+        ax.set_xlabel("Epoch")
+        ax.set_ylabel(metric.capitalize())
+        ax.grid(True)
         ax.legend()
 
     plt.tight_layout()
 
-    # Save the plot to a temp file
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmpfile:
         plt.savefig(tmpfile.name)
         mlflow.log_artifact(tmpfile.name, artifact_path="learning_curves")
+
     plt.close()
 
 
