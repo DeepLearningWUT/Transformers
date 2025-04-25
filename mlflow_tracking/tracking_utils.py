@@ -100,14 +100,14 @@ def log_confusion_matrix(y_true, y_pred, class_names, epoch):
        
     """
     from sklearn.metrics import confusion_matrix
-    
+
     plt.figure(figsize=(10, 8))
     cm = confusion_matrix(y_true, y_pred)
-    
+
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
-    
+
     # Add labels
     tick_marks = np.arange(len(class_names))
     plt.xticks(tick_marks, class_names, rotation=45)
@@ -115,7 +115,7 @@ def log_confusion_matrix(y_true, y_pred, class_names, epoch):
     plt.ylabel('True Label')
     plt.xlabel('Predicted Label')
     plt.tight_layout()
-    
+
     # Add text annotations
     thresh = cm.max() / 2.
     for i in range(cm.shape[0]):
@@ -123,7 +123,7 @@ def log_confusion_matrix(y_true, y_pred, class_names, epoch):
             plt.text(j, i, format(cm[i, j], 'd'),
                      horizontalalignment="center",
                      color="white" if cm[i, j] > thresh else "black")
-    
+
     # Save and log
     cm_path = os.path.join(f'confusion_matrix_epoch_{epoch}.png')
     plt.savefig(cm_path)
@@ -132,40 +132,34 @@ def log_confusion_matrix(y_true, y_pred, class_names, epoch):
 
 
 def log_learning_curves(train_metrics, val_metrics):
-    """
-    Create and log learning curve visualizations.
-    
-    Args:
-        train_metrics (dict): Dictionary of training metrics with lists of values per epoch
-        val_metrics (dict): Dictionary of validation metrics with lists of values per epoch
-        
-    """
-    # Create a figure with multiple subplots (one per metric)
+    import matplotlib.pyplot as plt
+    import tempfile
+    import os
+
     metrics = list(train_metrics.keys())
     epochs = range(1, len(train_metrics[metrics[0]]) + 1)
-    
-    # Create subplot for each metric
+
     n_metrics = len(metrics)
     fig, axes = plt.subplots(1, n_metrics, figsize=(n_metrics * 5, 5))
     if n_metrics == 1:
         axes = [axes]
-    
+
     for i, metric in enumerate(metrics):
         ax = axes[i]
-        ax.plot(epochs, train_metrics[metric], 'b-', label=f'Training {metric}')
-        ax.plot(epochs, val_metrics[metric], 'r-', label=f'Validation {metric}')
-        ax.set_title(f'{metric.capitalize()} Curves')
-        ax.set_xlabel('Epochs')
+        ax.plot(epochs, train_metrics[metric], "b-", label=f"Training {metric}")
+        ax.plot(epochs, val_metrics[metric], "r-", label=f"Validation {metric}")
+        ax.set_title(f"{metric.capitalize()} Curves")
+        ax.set_xlabel("Epochs")
         ax.set_ylabel(metric)
         ax.legend()
-    
-    plt.tight_layout()
-    
-    curves_path = "learning_curves.png"
 
-    plt.savefig(curves_path)
+    plt.tight_layout()
+
+    # Save the plot to a temp file
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmpfile:
+        plt.savefig(tmpfile.name)
+        mlflow.log_artifact(tmpfile.name, artifact_path="learning_curves")
     plt.close()
-    mlflow.log_artifact(curves_path, artifact_path="learning_curves")
 
 
 def log_audio_samples(waveforms, predictions, true_labels, class_names, sample_rate=16000):
