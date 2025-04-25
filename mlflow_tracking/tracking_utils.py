@@ -13,7 +13,6 @@ import torch
 from pathlib import Path
 
 
-
 def mlflow_run(config):
     """
     A decorator that wraps a training function with MLflow experiment and run handling.
@@ -71,30 +70,22 @@ def log_metrics(metrics, step=None):
     mlflow.log_metrics(metrics, step=step)
 
 
-def log_best_model(model, epoch, threshold_metrics=None):
-    """
-    Save and log model checkpoint as MLflow artifact.
-    
-    Args:
-        model (torch.nn.Module): PyTorch model to save
-        epoch (int): Current epoch number
-        
-        threshold_metrics (dict, optional): Metrics to determine if model should be registered
-        
-    Returns:
-        str: Path to saved model checkpoint
-    """
-   
-    checkpoint_path = f"best_model_epoch_{epoch}.pth"
+def log_checkpoint_model(model, epoch, threshold_metrics=None):
+    import tempfile
+    import os
 
-    # Save model state
-    torch.save(model.state_dict(), checkpoint_path)
-    mlflow.log_artifact(checkpoint_path, artifact_path="checkpoints")
-    
-    # Log model architecture
-    mlflow.pytorch.log_model(model, artifact_path="model")
-    
-    return checkpoint_path
+    # Create a temp directory (unique per run)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        local_path = os.path.join(tmpdir, f"model_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), local_path)
+
+        # ✅ Save it under checkpoints/, not model/
+        mlflow.log_artifact(local_path, artifact_path="checkpoints")
+
+    # Optional: only log the full model once elsewhere (e.g. best model)
+    # mlflow.pytorch.log_model(model, artifact_path="model")
+
+    return os.path.join("checkpoints", f"model_epoch_{epoch}.pth")
 
 
 def log_confusion_matrix(y_true, y_pred, class_names, epoch):
