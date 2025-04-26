@@ -31,21 +31,21 @@ def mlflow_run(config):
             mlruns_path = Path(os.path.abspath(os.path.join(os.getcwd(), "..", "mlruns")))
             mlruns_path.mkdir(parents=True, exist_ok=True)
 
-# Cross-platform URI formatting
+            
+
+            # Cross-platform URI formatting
             mlflow.set_tracking_uri(mlruns_path.as_uri())
 
-    
             mlflow.set_experiment(config["experiment_name"])
-            
-            
+
             # Start MLflow run
             with mlflow.start_run(run_name=config.get("run_name")):
                 # Log all parameters from config
                 mlflow.log_params(config)
-                
+
                 # Call the wrapped function
                 result = func(*args, **kwargs)
-                
+
                 # Register model if specified in config
                 if "registered_model_name" in config and "best_model_path" in result:
                     mlflow.pytorch.log_model(
@@ -53,7 +53,7 @@ def mlflow_run(config):
                         artifact_path="model",
                         registered_model_name=config["registered_model_name"]
                     )
-                
+
             return result
         return wrapper
     return decorator
