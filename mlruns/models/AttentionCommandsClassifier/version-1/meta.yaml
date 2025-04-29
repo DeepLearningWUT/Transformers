@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745846351813
+current_stage: None
+description: null
+last_updated_timestamp: 1745846351813
+name: AttentionCommandsClassifier
+run_id: 016da8081064476f94fd5a91a919562c
+run_link: null
+source: file:///c:/Users/cypri/Transformers/mlruns/806503596595999355/016da8081064476f94fd5a91a919562c/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///c:/Users/cypri/Transformers/mlruns/806503596595999355/016da8081064476f94fd5a91a919562c/artifacts/model
+user_id: null
+version: 1

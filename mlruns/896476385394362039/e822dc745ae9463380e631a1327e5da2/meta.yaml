@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/cypri/Transformers/mlruns/896476385394362039/e822dc745ae9463380e631a1327e5da2/artifacts
+end_time: 1745842332573
+entry_point_name: ''
+experiment_id: '896476385394362039'
+lifecycle_stage: active
+run_id: e822dc745ae9463380e631a1327e5da2
+run_name: cnn-rnn-v1
+run_uuid: e822dc745ae9463380e631a1327e5da2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745841827017
+status: 3
+tags: []
+user_id: cypri

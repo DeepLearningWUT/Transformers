@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745842332550
+current_stage: None
+description: null
+last_updated_timestamp: 1745842332550
+name: PROSTOcommandsClassifier
+run_id: e822dc745ae9463380e631a1327e5da2
+run_link: null
+source: file:///c:/Users/cypri/Transformers/mlruns/896476385394362039/e822dc745ae9463380e631a1327e5da2/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///c:/Users/cypri/Transformers/mlruns/896476385394362039/e822dc745ae9463380e631a1327e5da2/artifacts/model
+user_id: null
+version: 1

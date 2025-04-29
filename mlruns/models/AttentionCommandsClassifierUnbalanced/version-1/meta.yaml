@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745848921870
+current_stage: None
+description: null
+last_updated_timestamp: 1745848921870
+name: AttentionCommandsClassifierUnbalanced
+run_id: 5814591e959d438c84280243e46cdba3
+run_link: null
+source: file:///c:/Users/cypri/Transformers/mlruns/133062935170151282/5814591e959d438c84280243e46cdba3/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///c:/Users/cypri/Transformers/mlruns/133062935170151282/5814591e959d438c84280243e46cdba3/artifacts/model
+user_id: null
+version: 1

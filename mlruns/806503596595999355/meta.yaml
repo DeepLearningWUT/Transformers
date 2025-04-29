@@ -1,0 +1,6 @@
+artifact_location: file:///c:/Users/cypri/Transformers/mlruns/806503596595999355
+creation_time: 1745845777055
+experiment_id: '806503596595999355'
+last_update_time: 1745845777055
+lifecycle_stage: active
+name: with-attention-speech-commands-known-silence-unknown

@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745874736069
+current_stage: None
+description: null
+last_updated_timestamp: 1745874736069
+name: 10knonwcommands-only-Classifier
+run_id: ff60e07f0e544db7a7e3915321de4933
+run_link: null
+source: file:///c:/Users/cypri/Transformers/mlruns/994349557920624102/ff60e07f0e544db7a7e3915321de4933/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///c:/Users/cypri/Transformers/mlruns/994349557920624102/ff60e07f0e544db7a7e3915321de4933/artifacts/model
+user_id: null
+version: 1
